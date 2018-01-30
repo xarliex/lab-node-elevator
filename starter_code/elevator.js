@@ -3,27 +3,49 @@ class Elevator {
     this.floor      = 0;
     this.MAXFLOOR   = 10;
     this.requests   = [];
+    this.direction = "";
   }
 
-  start() { }
-  stop() { }
+  start() { 
+    this.clear = setInterval(() => {
+      this.update()
+  }, 1000);
+} 
+
+  stop(){
+    clearInterval(this.clear)
+   };
   update() { 
-    log(direction, this.floor)
+    if(this.direction == "up"){
+      this.floorUp();
+    } else{
+      this.floorDown();
+    }
+   this.log()
   }
   _passengersEnter() { }
   _passengersLeave() { }
-  floorUp() { }
-  floorDown() { }
-  call() { }
-  log(x, y) {
-    if(this.MAXFLOOR > this.floor){
-      x = "up";
-    } else if (this.MAXFLOOR < this.floor){
-      x = "down";
+  floorUp() {
+    if(this.floor < this.MAXFLOOR){
+      this.floor++;
     }
-    return "Direction: " + x + "|" + "Floor: " + this.floor
+      else{
+        this.direction = "down"
+      }
+   }
+  
+  floorDown() {
+    if (this.floor > 0){
+      this.floor--; 
+    }
+      else{
+        this.direction = "up"
+      }
+   }
+  call() { }
+  log() {
+    console.log(`Direction: ${this.direction} | Floor: ${this.floor}`);
   }
 }
 
 module.exports = Elevator;
-
