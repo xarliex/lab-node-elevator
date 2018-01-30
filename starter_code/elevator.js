@@ -7,13 +7,23 @@ class Elevator {
 
   start() { }
   stop() { }
-  update() { }
+  update() { 
+    log(direction, this.floor)
+  }
   _passengersEnter() { }
   _passengersLeave() { }
   floorUp() { }
   floorDown() { }
   call() { }
-  log() { }
+  log(x, y) {
+    if(this.MAXFLOOR > this.floor){
+      x = "up";
+    } else if (this.MAXFLOOR < this.floor){
+      x = "down";
+    }
+    return "Direction: " + x + "|" + "Floor: " + this.floor
+  }
 }
 
 module.exports = Elevator;
+
